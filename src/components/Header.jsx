@@ -16,7 +16,7 @@ const Header = () => {
               <Users className="w-5 h-5 text-white" />
             </div> */}
             <img className="w-16 h-16" src={logo} alt="logo image" />
-            <span className="text-lg sm:text-xl font-bold bg-gradient-to-r from-red-700 to-red-950 bg-clip-text text-transparent">
+            <span className="text-lg sm:text-xl font-bold bg-gradient-to-r from-re to-red-950 bg-clip-text text-transparent">
               JIGARCHILIK
             </span>
           </div>
