@@ -13,7 +13,7 @@ import {
 import LoginModal from "../components/LoginModal";
 import RegisterModal from "../components/RegisterModal";
 import { useAuth } from "../contexts/AuthContext";
-
+import logo from "../assets/logo.png"; // Adjust the path as necessary
 const LandingPage = () => {
   const [showLogin, setShowLogin] = useState(false);
   const [showRegister, setShowRegister] = useState(false);
@@ -82,11 +82,12 @@ const LandingPage = () => {
       {/* Navigatsiya */}
       <nav className="flex justify-between items-center flex-wrap gap-y-2 p-4 sm:p-6 bg-white/80 backdrop-blur-md shadow-sm">
         <div className="flex items-center space-x-2">
-          <div className="w-9 h-9 sm:w-10 sm:h-10 bg-gradient-to-r from-blue-500 to-purple-600 rounded-xl flex items-center justify-center">
+          {/* <div className="w-9 h-9 sm:w-10 sm:h-10 bg-gradient-to-r from-blue-500 to-purple-600 rounded-xl flex items-center justify-center">
             <Users className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
-          </div>
-          <span className="text-lg sm:text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-            Tarmoq
+          </div> */}
+          <img className="w-16 h-16" src={logo} alt="logo image" />
+          <span className="text-lg sm:text-2xl font-bold bg-gradient-to-r from-red-700 to-red-950 bg-clip-text text-transparent">
+            JIGARCHILIK
           </span>
         </div>
 
@@ -122,7 +123,7 @@ const LandingPage = () => {
           onClick={() => setShowRegister(true)}
           className="px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-blue-500 to-purple-600 text-white text-base sm:text-lg rounded-full hover:from-blue-600 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 shadow-xl"
         >
-          YouthConnect’ga hoziroq qo‘shiling
+          Jigarchilikka hoziroq qo‘shiling
         </button>
       </section>
 
