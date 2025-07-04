@@ -21,11 +21,14 @@ const Profile = () => {
   const [isRecording, setIsRecording] = useState(false);
   const [recordedVideoUrl, setRecordedVideoUrl] = useState(null);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  const [isAddSkillModalOpen, setIsAddSkillModalOpen] = useState(false);
+  const [isAddProjectModalOpen, setIsAddProjectModalOpen] = useState(false);
   const videoRef = useRef(null);
   const mediaRecorderRef = useRef(null);
   const recordedChunksRef = useRef([]);
   const streamRef = useRef(null);
   const fileInputRef = useRef(null);
+  const projectFileInputRef = useRef(null);
 
   // State for editable profile details
   const [profile, setProfile] = useState({
@@ -42,13 +45,46 @@ const Profile = () => {
   const [tempProfile, setTempProfile] = useState(profile);
   const [imagePreview, setImagePreview] = useState(profile.image);
 
-  const skills = [
+  // State for skills to allow dynamic updates
+  const [skills, setSkills] = useState([
     { name: "React", level: 90, endorsements: 12 },
     { name: "TypeScript", level: 85, endorsements: 8 },
     { name: "Node.js", level: 80, endorsements: 15 },
     { name: "UI/UX Dizayn", level: 75, endorsements: 6 },
     { name: "Python", level: 70, endorsements: 4 },
-  ];
+  ]);
+
+  const [tempSkill, setTempSkill] = useState({
+    name: "",
+    level: 50,
+    endorsements: 0,
+  });
+
+  // State for projects to allow dynamic updates
+  const [projects, setProjects] = useState([
+    {
+      title: "Elektron tijorat platformasi",
+      description: "React va Node.js bilan qurilgan to‘liq veb ilova",
+      technologies: ["React", "Node.js", "MongoDB"],
+      image:
+        "https://images.pexels.com/photos/1181216/pexels-photo-1181216.jpeg?auto=compress&cs=tinysrgb&w=300",
+    },
+    {
+      title: "Mobil Bank Ilovasi",
+      description: "Zamonaviy mobil bank ilovasi uchun UI/UX dizayn",
+      technologies: ["Figma", "Prototiplash", "Foydalanuvchi tadqiqotlari"],
+      image:
+        "https://images.pexels.com/photos/1181435/pexels-photo-1181435.jpeg?auto=compress&cs=tinysrgb&w=300",
+    },
+  ]);
+
+  const [tempProject, setTempProject] = useState({
+    title: "",
+    description: "",
+    technologies: "",
+    image: "",
+  });
+  const [projectImagePreview, setProjectImagePreview] = useState("");
 
   const achievements = [
     {
@@ -70,23 +106,6 @@ const Profile = () => {
       title: "Mahorat Ustasi",
       description: "10+ vazifa yakunlangan",
       icon: Award,
-    },
-  ];
-
-  const projects = [
-    {
-      title: "Elektron tijorat platformasi",
-      description: "React va Node.js bilan qurilgan to‘liq veb ilova",
-      technologies: ["React", "Node.js", "MongoDB"],
-      image:
-        "https://images.pexels.com/photos/1181216/pexels-photo-1181216.jpeg?auto=compress&cs=tinysrgb&w=300",
-    },
-    {
-      title: "Mobil Bank Ilovasi",
-      description: "Zamonaviy mobil bank ilovasi uchun UI/UX dizayn",
-      technologies: ["Figma", "Prototiplash", "Foydalanuvchi tadqiqotlari"],
-      image:
-        "https://images.pexels.com/photos/1181435/pexels-photo-1181435.jpeg?auto=compress&cs=tinysrgb&w=300",
     },
   ];
 
@@ -169,7 +188,7 @@ const Profile = () => {
         });
       };
       videoRef.current.style.display = "none";
-      videoRef.current.offsetHeight;
+      videoRef.current.offsetHeight; // Force reflow
       videoRef.current.style.display = "block";
     }
   }, [isVideoModalOpen, isRecording]);
@@ -206,6 +225,26 @@ const Profile = () => {
     }
   };
 
+  const handleProjectImageChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      if (!file.type.startsWith("image/")) {
+        toast.error("Faqat rasm fayllarini yuklash mumkin!");
+        return;
+      }
+      if (file.size > 5 * 1024 * 1024) {
+        toast.error("Rasm hajmi 5MB dan kichik bo‘lishi kerak!");
+        return;
+      }
+      const reader = new FileReader();
+      reader.onload = () => {
+        setProjectImagePreview(reader.result);
+        setTempProject((prev) => ({ ...prev, image: reader.result }));
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
   const handleEditSubmit = (e) => {
     e.preventDefault();
     const { name, title, location, joinDate, website, description } =
@@ -217,6 +256,44 @@ const Profile = () => {
     setProfile(tempProfile);
     setIsEditModalOpen(false);
     toast.success("Profil muvaffaqiyatli yangilandi!");
+  };
+
+  const handleAddSkillSubmit = (e) => {
+    e.preventDefault();
+    const { name, level, endorsements } = tempSkill;
+    if (!name || level < 0 || level > 100 || endorsements < 0) {
+      toast.error("Iltimos, to‘g‘ri ma'lumotlar kiriting!");
+      return;
+    }
+    setSkills([
+      ...skills,
+      { name, level: Number(level), endorsements: Number(endorsements) },
+    ]);
+    setTempSkill({ name: "", level: 50, endorsements: 0 });
+    setIsAddSkillModalOpen(false);
+    toast.success("Ko‘nikma muvaffaqiyatli qo‘shildi!");
+  };
+
+  const handleAddProjectSubmit = (e) => {
+    e.preventDefault();
+    const { title, description, technologies, image } = tempProject;
+    if (!title || !description || !technologies || !image) {
+      toast.error("Iltimos, barcha maydonlarni to‘ldiring!");
+      return;
+    }
+    setProjects([
+      ...projects,
+      {
+        title,
+        description,
+        technologies: technologies.split(",").map((tech) => tech.trim()),
+        image,
+      },
+    ]);
+    setTempProject({ title: "", description: "", technologies: "", image: "" });
+    setProjectImagePreview("");
+    setIsAddProjectModalOpen(false);
+    toast.success("Loyiha muvaffaqiyatli qo‘shildi!");
   };
 
   const handleDownloadResume = () => {
@@ -240,9 +317,7 @@ const Profile = () => {
         `${project.title}: ${project.description}`,
         20,
         120 + skills.length * 10 + index * 20,
-        {
-          maxWidth: 170,
-        }
+        { maxWidth: 170 }
       );
     });
     doc.save(`${profile.name.replace(" ", "_")}_Rezyume.pdf`);
@@ -368,7 +443,13 @@ const Profile = () => {
                 <h2 className="text-xl font-semibold text-gray-800">
                   Ko‘nikmalar va Tasdiqlar
                 </h2>
-                <button className="text-blue-600 hover:text-blue-700 text-sm font-medium">
+                <button
+                  onClick={() => {
+                    setTempSkill({ name: "", level: 50, endorsements: 0 });
+                    setIsAddSkillModalOpen(true);
+                  }}
+                  className="text-blue-600 hover:text-blue-700 text-sm font-medium"
+                >
                   Ko‘nikma qo'shish
                 </button>
               </div>
@@ -400,7 +481,19 @@ const Profile = () => {
                 <h2 className="text-xl font-semibold text-gray-800">
                   Tanlangan Loyihalar
                 </h2>
-                <button className="text-blue-600 hover:text-blue-700 text-sm font-medium">
+                <button
+                  onClick={() => {
+                    setTempProject({
+                      title: "",
+                      description: "",
+                      technologies: "",
+                      image: "",
+                    });
+                    setProjectImagePreview("");
+                    setIsAddProjectModalOpen(true);
+                  }}
+                  className="text-blue-600 hover:text-blue-700 text-sm font-medium"
+                >
                   Loyiha qo'shish
                 </button>
               </div>
@@ -575,11 +668,9 @@ const Profile = () => {
               >
                 ✕
               </button>
-
               <h3 className="text-center text-lg font-semibold text-gray-800 mb-4 mt-2">
                 Profilni Tahrirlash
               </h3>
-
               <div className="space-y-4">
                 <div className="flex justify-center">
                   <img
@@ -588,7 +679,6 @@ const Profile = () => {
                     className="w-20 h-20 rounded-full border-2 border-gray-200 object-cover"
                   />
                 </div>
-
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">
                     Profil Rasmi
@@ -601,8 +691,6 @@ const Profile = () => {
                     className="w-full text-xs text-gray-500 file:mr-3 file:py-1.5 file:px-3 file:rounded-full file:border-0 file:bg-blue-50 file:text-blue-600 hover:file:bg-blue-100"
                   />
                 </div>
-
-                {/* Input fields */}
                 {[
                   { label: "Ism", key: "name" },
                   { label: "Lavozim", key: "title" },
@@ -627,7 +715,6 @@ const Profile = () => {
                     />
                   </div>
                 ))}
-
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">
                     Tavsif
@@ -644,8 +731,6 @@ const Profile = () => {
                     className="w-full px-3 py-2 text-sm border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500"
                   />
                 </div>
-
-                {/* Action buttons */}
                 <div className="flex justify-end gap-2 pt-2">
                   <button
                     onClick={() => setIsEditModalOpen(false)}
@@ -655,6 +740,184 @@ const Profile = () => {
                   </button>
                   <button
                     onClick={handleEditSubmit}
+                    className="px-4 py-2 bg-blue-600 text-white text-sm rounded-xl hover:bg-blue-700"
+                  >
+                    Saqlash
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Add Skill Modal */}
+        {isAddSkillModalOpen && (
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
+            <div className="bg-white rounded-2xl w-[90%] max-w-md p-4 relative">
+              <button
+                onClick={() => setIsAddSkillModalOpen(false)}
+                className="absolute top-2 right-2 text-gray-600 hover:text-gray-800"
+              >
+                ✕
+              </button>
+              <h3 className="text-center text-lg font-semibold text-gray-800 mb-4 mt-2">
+                Ko‘nikma Qo‘shish
+              </h3>
+              <div className="space-y-4">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    Ko‘nikma Nomi
+                  </label>
+                  <input
+                    type="text"
+                    value={tempSkill.name}
+                    onChange={(e) =>
+                      setTempSkill({ ...tempSkill, name: e.target.value })
+                    }
+                    className="w-full px-3 py-2 text-sm border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    Daraja (0-100)
+                  </label>
+                  <input
+                    type="number"
+                    min="0"
+                    max="100"
+                    value={tempSkill.level}
+                    onChange={(e) =>
+                      setTempSkill({ ...tempSkill, level: e.target.value })
+                    }
+                    className="w-full px-3 py-2 text-sm border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    Tasdiqlar
+                  </label>
+                  <input
+                    type="number"
+                    min="0"
+                    value={tempSkill.endorsements}
+                    onChange={(e) =>
+                      setTempSkill({
+                        ...tempSkill,
+                        endorsements: e.target.value,
+                      })
+                    }
+                    className="w-full px-3 py-2 text-sm border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  />
+                </div>
+                <div className="flex justify-end gap-2 pt-2">
+                  <button
+                    onClick={() => setIsAddSkillModalOpen(false)}
+                    className="px-4 py-2 bg-gray-200 text-gray-800 text-sm rounded-xl hover:bg-gray-300"
+                  >
+                    Bekor qilish
+                  </button>
+                  <button
+                    onClick={handleAddSkillSubmit}
+                    className="px-4 py-2 bg-blue-600 text-white text-sm rounded-xl hover:bg-blue-700"
+                  >
+                    Saqlash
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Add Project Modal */}
+        {isAddProjectModalOpen && (
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
+            <div className="bg-white rounded-2xl w-[90%] max-w-md p-4 relative">
+              <button
+                onClick={() => setIsAddProjectModalOpen(false)}
+                className="absolute top-2 right-2 text-gray-600 hover:text-gray-800"
+              >
+                ✕
+              </button>
+              <h3 className="text-center text-lg font-semibold text-gray-800 mb-4 mt-2">
+                Loyiha Qo‘shish
+              </h3>
+              <div className="space-y-4">
+                <div className="flex justify-center">
+                  <img
+                    src={
+                      projectImagePreview || "https://via.placeholder.com/80"
+                    }
+                    alt="Loyiha rasmi"
+                    className="w-20 h-20 rounded border-2 border-gray-200 object-cover"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    Loyiha Rasmi
+                  </label>
+                  <input
+                    type="file"
+                    accept="image/*"
+                    ref={projectFileInputRef}
+                    onChange={handleProjectImageChange}
+                    className="w-full text-xs text-gray-500 file:mr-3 file:py-1.5 file:px-3 file:rounded-full file:border-0 file:bg-blue-50 file:text-blue-600 hover:file:bg-blue-100"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    Loyiha Nomi
+                  </label>
+                  <input
+                    type="text"
+                    value={tempProject.title}
+                    onChange={(e) =>
+                      setTempProject({ ...tempProject, title: e.target.value })
+                    }
+                    className="w-full px-3 py-2 text-sm border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    Tavsif
+                  </label>
+                  <textarea
+                    value={tempProject.description}
+                    onChange={(e) =>
+                      setTempProject({
+                        ...tempProject,
+                        description: e.target.value,
+                      })
+                    }
+                    rows="3"
+                    className="w-full px-3 py-2 text-sm border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    Texnologiyalar (vergul bilan ajrating)
+                  </label>
+                  <input
+                    type="text"
+                    value={tempProject.technologies}
+                    onChange={(e) =>
+                      setTempProject({
+                        ...tempProject,
+                        technologies: e.target.value,
+                      })
+                    }
+                    className="w-full px-3 py-2 text-sm border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    placeholder="masalan: React, Node.js, MongoDB"
+                  />
+                </div>
+                <div className="flex justify-end gap-2 pt-2">
+                  <button
+                    onClick={() => setIsAddProjectModalOpen(false)}
+                    className="px-4 py-2 bg-gray-200 text-gray-800 text-sm rounded-xl hover:bg-gray-300"
+                  >
+                    Bekor qilish
+                  </button>
+                  <button
+                    onClick={handleAddProjectSubmit}
                     className="px-4 py-2 bg-blue-600 text-white text-sm rounded-xl hover:bg-blue-700"
                   >
                     Saqlash

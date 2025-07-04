@@ -1,6 +1,6 @@
 import { createContext, useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
-
+import me from "../assets/me.jpg";
 const AuthContext = createContext(undefined);
 
 export const useAuth = () => {
@@ -21,12 +21,11 @@ export const AuthProvider = ({ children }) => {
     // Mock user data
     setUser({
       id: "1",
-      name: "Alex Chen",
-      email,
-      avatar:
-        "https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=150",
-      skills: ["React", "Node.js", "Design"],
-      location: "San Francisco, CA",
+      name: "Rozimuhammad Rozimurodov",
+      email, // Email sizda mavjud bo‘lsa, shu joyda dinamik bo‘lib qoladi
+      avatar: me,
+      skills: ["React", "Node.js", "WebRTC", "Tailwind CSS", "Firebase"],
+      location: "Farg'ona, O‘zbekiston",
     });
   };
 
@@ -38,8 +37,7 @@ export const AuthProvider = ({ children }) => {
       id: "1",
       name: userData.name || "New User",
       email: userData.email,
-      avatar:
-        "https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=150",
+      avatar: meƒ,
       skills: userData.skills || [],
       location: userData.location || "Not specified",
     });

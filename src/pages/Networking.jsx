@@ -248,7 +248,7 @@ const Networking = () => {
                     <img
                       src={person.avatar}
                       alt={person.name}
-                      className="w-12 h-12 rounded-full border-2 border-white shadow-sm"
+                      className="w-12 h-12 rounded-full object-cover border-2 border-white shadow-sm"
                     />
                     <div className="flex-1">
                       <div className="flex items-center justify-between mb-2">
