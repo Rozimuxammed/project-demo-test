@@ -321,7 +321,7 @@ const Community = () => {
           {/* Yon panel */}
           <div className="space-y-6">
             {/* Trenddagi mavzular */}
-            <div className="bg-white rounded-2xl p-6 shadow-sm">
+            <div className="bg-white w-64 rounded-2xl p-6 shadow-sm">
               <h3 className="text-lg font-semibold text-gray-800 mb-4">
                 Trenddagi mavzular
               </h3>
@@ -329,12 +329,12 @@ const Community = () => {
                 {trendingTopics.map((topic, index) => (
                   <div
                     key={index}
-                    className="flex items-center justify-between p-2 hover:bg-gray-50 rounded-lg transition-colors cursor-pointer"
+                    className="flex items-center gap-2 justify-between p-2 hover:bg-gray-50 rounded-lg transition-colors cursor-pointer"
                   >
-                    <span className="text-blue-600 font-medium">
+                    <span className="text-blue-600 text-sm font-medium">
                       {topic.tag}
                     </span>
-                    <span className="text-gray-500 text-sm">
+                    <span className="text-gray-500 text-xs">
                       {topic.posts} post
                     </span>
                   </div>
@@ -343,7 +343,7 @@ const Community = () => {
             </div>
 
             {/* Qoidalar */}
-            <div className="bg-gradient-to-r from-blue-500 to-purple-600 rounded-2xl p-6 text-white">
+            <div className="bg-gradient-to-r w-64 from-blue-500 to-purple-600 rounded-2xl p-6 text-white">
               <h3 className="text-lg font-semibold mb-4">
                 Hamjamiyat qoidalari
               </h3>
@@ -357,7 +357,7 @@ const Community = () => {
             </div>
 
             {/* Faol foydalanuvchilar */}
-            <div className="bg-white rounded-2xl p-6 shadow-sm">
+            <div className="bg-white w-64 rounded-2xl p-6 shadow-sm">
               <h3 className="text-lg font-semibold text-gray-800 mb-4">
                 Faol ishtirokchilar
               </h3>

@@ -67,14 +67,14 @@ const Profile = () => {
       description: "React va Node.js bilan qurilgan to‘liq veb ilova",
       technologies: ["React", "Node.js", "MongoDB"],
       image:
-        "https://images.pexels.com/photos/1181216/pexels-photo-1181216.jpeg?auto=compress&cs=tinysrgb&w=300",
+        "https://img.freepik.com/premium-vector/e-commerce-template-ui-ux-design_633816-119.jpg",
     },
     {
       title: "Mobil Bank Ilovasi",
       description: "Zamonaviy mobil bank ilovasi uchun UI/UX dizayn",
       technologies: ["Figma", "Prototiplash", "Foydalanuvchi tadqiqotlari"],
       image:
-        "https://images.pexels.com/photos/1181435/pexels-photo-1181435.jpeg?auto=compress&cs=tinysrgb&w=300",
+        "https://cdn.dribbble.com/userupload/24467356/file/original-96a8ae6beeaa9032f3b3d8fb388cd7c3.gif",
     },
   ]);
 
