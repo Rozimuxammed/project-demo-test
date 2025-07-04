@@ -100,7 +100,7 @@ const RandomChat = () => {
   const startVideoChat = async () => {
     setIsSearching(true);
     try {
-      // Initialize peer connection if not already done
+      // Initialize peer connection if not already done or closed
       if (
         !peerConnectionRef.current ||
         peerConnectionRef.current.signalingState === "closed"
@@ -109,10 +109,16 @@ const RandomChat = () => {
         console.log("New peer connection created");
       }
 
-      // Add tracks to peer connection
+      // Add tracks only if not already added
+      const senders = peerConnectionRef.current.getSenders();
       localStreamRef.current.getTracks().forEach((track) => {
-        peerConnectionRef.current.addTrack(track, localStreamRef.current);
-        console.log("Track added to peer connection:", track);
+        const alreadyAdded = senders.some((sender) => sender.track === track);
+        if (!alreadyAdded) {
+          peerConnectionRef.current.addTrack(track, localStreamRef.current);
+          console.log("Track added to peer connection:", track);
+        } else {
+          console.log("Track already added, skipping:", track);
+        }
       });
 
       // Set up ontrack event
@@ -195,7 +201,7 @@ const RandomChat = () => {
     }
     setIsSearching(true);
     try {
-      // Initialize peer connection if not already done
+      // Initialize peer connection if not already done or closed
       if (
         !peerConnectionRef.current ||
         peerConnectionRef.current.signalingState === "closed"
@@ -204,10 +210,16 @@ const RandomChat = () => {
         console.log("New peer connection created for answer");
       }
 
-      // Add tracks to peer connection
+      // Add tracks only if not already added
+      const senders = peerConnectionRef.current.getSenders();
       localStreamRef.current.getTracks().forEach((track) => {
-        peerConnectionRef.current.addTrack(track, localStreamRef.current);
-        console.log("Track added to peer connection:", track);
+        const alreadyAdded = senders.some((sender) => sender.track === track);
+        if (!alreadyAdded) {
+          peerConnectionRef.current.addTrack(track, localStreamRef.current);
+          console.log("Track added to peer connection:", track);
+        } else {
+          console.log("Track already added, skipping:", track);
+        }
       });
 
       // Set up ontrack event
@@ -276,7 +288,7 @@ const RandomChat = () => {
       setIsSearching(false);
     } catch (err) {
       console.error("Error answering call:", err);
-      alert("Qo‘ng‘iroqqa javob berishda xato yuz berdi.");
+      alert("Qo‘ng‘iroqqa javob berishda xato yuz berdi: " + err.message);
       setIsSearching(false);
     }
   };
