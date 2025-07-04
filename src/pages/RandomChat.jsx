@@ -11,6 +11,7 @@ import {
   addDoc,
   onSnapshot,
 } from "firebase/firestore";
+import { toast } from "sonner";
 
 // Firebase Config
 const firebaseConfig = {
@@ -77,7 +78,7 @@ const RandomChat = () => {
         console.log("Local stream set to webcamVideoRef and played");
       } else {
         console.error("webcamVideoRef.current is null");
-        alert("Veb-kamera elementi topilmadi. Sahifani yangilang.");
+        toast.warning("Veb-kamera elementi topilmadi. Sahifani yangilang.");
       }
 
       setIsWebcamOn(true);
@@ -92,7 +93,7 @@ const RandomChat = () => {
         errorMessage =
           "Veb-kamera topilmadi. Iltimos, kamera ulanganligini tekshiring.";
       }
-      alert(errorMessage);
+      toast.error(errorMessage);
       setIsSearching(false);
     }
   };
@@ -188,7 +189,7 @@ const RandomChat = () => {
       });
     } catch (err) {
       console.error("Error creating call:", err);
-      alert("Qo‘ng‘iroqni boshlashda xato yuz berdi.");
+      toast.error("Qo‘ng‘iroqni boshlashda xato yuz berdi.");
       setIsSearching(false);
     }
   };
@@ -196,7 +197,7 @@ const RandomChat = () => {
   const answerCall = async () => {
     const callId = callInputRef.current.value;
     if (!callId) {
-      alert("Iltimos, qo‘ng‘iroq ID sini kiriting");
+      toast.warning("Iltimos, qo‘ng‘iroq ID sini kiriting");
       return;
     }
     setIsSearching(true);
@@ -241,7 +242,7 @@ const RandomChat = () => {
       const callSnapshot = await getDoc(callDocRef);
 
       if (!callSnapshot.exists()) {
-        alert("Qo‘ng‘iroq ID si topilmadi");
+        toast.error("Qo‘ng‘iroq ID si topilmadi");
         setIsSearching(false);
         return;
       }
@@ -288,7 +289,7 @@ const RandomChat = () => {
       setIsSearching(false);
     } catch (err) {
       console.error("Error answering call:", err);
-      alert("Qo‘ng‘iroqqa javob berishda xato yuz berdi: " + err.message);
+      toast.error("Qo‘ng‘iroqqa javob berishda xato yuz berdi: " + err.message);
       setIsSearching(false);
     }
   };
@@ -334,7 +335,7 @@ const RandomChat = () => {
 
   return (
     <Layout>
-      <div className="space-y-8 my-12 max-w-4xl mx-auto px-4 sm:px-6">
+      <div className="space-y-8 my-20 max-w-4xl mx-auto px-4 sm:px-6">
         <div className="text-center">
           <h1 className="text-3xl font-bold text-gray-800 mb-2">
             Tasodifiy Aloqa

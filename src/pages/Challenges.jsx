@@ -304,7 +304,7 @@ const Challenges = () => {
 
   return (
     <Layout>
-      <div className="space-y-6 my-6 px-3 md:px-6 py-4 max-w-6xl mx-auto">
+      <div className="space-y-6 my-16 px-3 md:px-6 py-4 max-w-6xl mx-auto">
         {/* Header */}
         <div className="bg-gradient-to-r from-orange-500 to-red-600 rounded-2xl p-4 md:p-6 text-white">
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">

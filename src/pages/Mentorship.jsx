@@ -111,7 +111,7 @@ const Mentorship = () => {
 
   return (
     <Layout>
-      <div className="space-y-8 w-full my-10 px-4 sm:px-6 lg:px-8 py-6">
+      <div className="space-y-8 w-full my-16 px-4 sm:px-6 lg:px-8 py-6">
         {/* Header */}
         <div className="flex w-full flex-col md:flex-row md:items-center md:justify-between gap-4">
           <div>

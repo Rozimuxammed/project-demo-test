@@ -345,7 +345,7 @@ const Profile = () => {
 
   return (
     <Layout>
-      <div className="space-y-8 px-4 sm:px-6 my-16 lg:px-8">
+      <div className="space-y-8 px-4 sm:px-6 my-20 lg:px-8">
         {/* Profile Header */}
         <div className="bg-gradient-to-r from-blue-500 to-purple-600 rounded-3xl p-6 sm:p-8 text-white">
           <div className="flex flex-col sm:flex-row items-center sm:items-start space-y-4 sm:space-y-0 sm:space-x-6">

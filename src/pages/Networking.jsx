@@ -104,7 +104,7 @@ const Networking = () => {
 
   return (
     <Layout>
-      <div className="space-y-8 mt-16">
+      <div className="space-y-8 mt-20">
         {/* Header */}
         <div>
           <h1 className="text-3xl font-bold text-gray-800 mb-2">

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Search, Bell, MessageCircle, Users, Menu, X } from "lucide-react";
 import { useAuth } from "../contexts/AuthContext";
-
+import logo from "../assets/logo.png"; // Adjust the path as necessary
 const Header = () => {
   const { user, logout } = useAuth();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -12,11 +12,12 @@ const Header = () => {
         {/* Logo & Search */}
         <div className="flex items-center space-x-4 sm:space-x-6">
           <div className="flex items-center space-x-2">
-            <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
+            {/* <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
               <Users className="w-5 h-5 text-white" />
-            </div>
-            <span className="text-lg sm:text-xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-              Networking
+            </div> */}
+            <img className="w-16 h-16" src={logo} alt="logo image" />
+            <span className="text-lg sm:text-xl font-bold bg-gradient-to-r from-red-700 to-red-950 bg-clip-text text-transparent">
+              JIGARCHILIK
             </span>
           </div>
 

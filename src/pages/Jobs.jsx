@@ -152,7 +152,7 @@ const Jobs = () => {
 
   return (
     <Layout>
-      <div className="space-y-8 my-16">
+      <div className="space-y-8 my-20">
         {/* Top Bar */}
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
           <div>
