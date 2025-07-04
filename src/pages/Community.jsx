@@ -215,11 +215,6 @@ const Community = () => {
                   </button>
                 ))}
               </div>
-
-              <button className="flex items-center space-x-2 px-4 py-2 border border-gray-200 rounded-xl hover:bg-gray-50">
-                <Filter className="w-4 h-4" />
-                <span>Filtr</span>
-              </button>
             </div>
 
             {/* Postlar */}
@@ -233,7 +228,7 @@ const Community = () => {
                     <img
                       src={post.author.avatar}
                       alt={post.author.name}
-                      className="w-12 h-12 rounded-full border-2 border-white shadow-sm shrink-0"
+                      className="w-12 h-12 rounded-full object-cover border-2 border-white shadow-sm shrink-0"
                     />
                     <div className="flex-1">
                       {/* Muallif */}
