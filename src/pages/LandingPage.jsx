@@ -504,7 +504,7 @@ const LandingPage = () => {
             onClick={() => setShowQuiz(true)}
             className="px-8 py-4 bg-white text-blue-500 font-bold text-lg rounded-full hover:bg-gray-100 transition-all duration-300 transform hover:scale-110 shadow-lg"
           >
-            Viktorinani Boshlash 🚀
+            Viktorinani Boshlash
           </button>
         </div>
       </section>
