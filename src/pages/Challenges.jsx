@@ -368,7 +368,7 @@ const Challenges = () => {
             </div>
 
             {/* Challenges List */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-1 xl:grid-cols-2 gap-4">
               {filteredChallenges.map((challenge) => (
                 <div
                   key={challenge.id}
@@ -589,9 +589,7 @@ const Challenges = () => {
               <div className="space-y-3">
                 <div className="flex justify-center">
                   <img
-                    src={
-                      challengeImagePreview || "https://picsum.photos/200/300"
-                    }
+                    src={challengeImagePreview}
                     alt=""
                     className="w-16 h-16 rounded border-2 border-gray-200 object-cover"
                   />
