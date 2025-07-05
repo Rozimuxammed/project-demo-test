@@ -3,10 +3,12 @@ import Layout from "../components/Layout";
 import { Coffee, Star, MapPin, Filter, Search } from "lucide-react";
 import { toast } from "sonner";
 import me from "../assets/me.jpg";
+
 const Mentorship = () => {
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [selectedMentor, setSelectedMentor] = useState(null);
   const [isBookingOpen, setIsBookingOpen] = useState(false);
+  const [selectedTime, setSelectedTime] = useState(null); // Track selected time slot
 
   const categories = [
     { id: "all", label: "Barcha mentorlar" },
@@ -36,6 +38,11 @@ const Mentorship = () => {
       location: "Farg'ona, O‘zbekiston",
       available: true,
       category: "tech",
+      timeSlots: [
+        { id: 1, time: "10:00 - 11:00", available: true },
+        { id: 2, time: "14:00 - 15:00", available: true },
+        { id: 3, time: "16:00 - 17:00", available: false },
+      ],
     },
     {
       id: 2,
@@ -56,6 +63,11 @@ const Mentorship = () => {
       location: "Andijon, O‘zbekiston",
       available: true,
       category: "tech",
+      timeSlots: [
+        { id: 1, time: "09:00 - 10:00", available: true },
+        { id: 2, time: "13:00 - 14:00", available: false },
+        { id: 3, time: "15:00 - 16:00", available: true },
+      ],
     },
     {
       id: 3,
@@ -76,6 +88,11 @@ const Mentorship = () => {
       location: "Samarqand, O‘zbekiston",
       available: true,
       category: "design",
+      timeSlots: [
+        { id: 1, time: "11:00 - 12:00", available: true },
+        { id: 2, time: "15:00 - 16:00", available: true },
+        { id: 3, time: "17:00 - 18:00", available: false },
+      ],
     },
     {
       id: 4,
@@ -83,7 +100,7 @@ const Mentorship = () => {
       title: "Mahsulot menejeri",
       company: "MyTaxi",
       avatar:
-        "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=150", // erkak kishiga mos avatar
+        "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=150",
       rating: 4.7,
       sessions: 77,
       price: 22,
@@ -96,6 +113,7 @@ const Mentorship = () => {
       location: "Namangan, O‘zbekiston",
       available: false,
       category: "business",
+      timeSlots: [], // No time slots since mentor is unavailable
     },
   ];
 
@@ -103,11 +121,22 @@ const Mentorship = () => {
     toast.success("Mentor bo‘lish uchun arizangiz muvaffaqiyatli yuborildi!");
   };
 
-  // Filter mentors based on selected category
   const filteredMentors =
     selectedCategory === "all"
       ? mentors
       : mentors.filter((mentor) => mentor.category === selectedCategory);
+
+  const handleConfirmBooking = () => {
+    if (!selectedTime) {
+      toast.error("Iltimos, uchrashuv vaqtini tanlang!");
+      return;
+    }
+    toast.success(
+      `${selectedMentor.name} bilan ${selectedTime} da uchrashuv belgilandi!`
+    );
+    setIsBookingOpen(false);
+    setSelectedTime(null); // Reset selected time
+  };
 
   return (
     <Layout>
@@ -231,7 +260,11 @@ const Mentorship = () => {
                 <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
                   <div className="flex items-center space-x-1">
                     <Coffee className="w-4 h-4 text-orange-500" />
-                    <span className="font-semibold text-xs text-gray-800">
+                    <span
+                      class
+                      Ascending
+                      className="font-semibold text-xs text-gray-800"
+                    >
                       {mentor.price} 000
                     </span>
                     <span className="text-gray-500 text-sm">/ seans</span>
@@ -268,7 +301,10 @@ const Mentorship = () => {
           <div className="fixed inset-0 bg-black bg-opacity-40 flex justify-center items-center z-50">
             <div className="bg-white rounded-2xl shadow-lg p-6 w-full max-w-md relative">
               <button
-                onClick={() => setIsBookingOpen(false)}
+                onClick={() => {
+                  setIsBookingOpen(false);
+                  setSelectedTime(null);
+                }}
                 className="absolute top-2 right-2 text-gray-400 hover:text-gray-600"
               >
                 ✕
@@ -285,16 +321,39 @@ const Mentorship = () => {
                   💵 <strong>{selectedMentor.price}000</strong> – 1 seans narxi
                 </p>
                 <p>📍 {selectedMentor.location}</p>
+                <div>
+                  <p className="font-semibold mb-2">Mavjud vaqtlar:</p>
+                  {selectedMentor.timeSlots.length > 0 ? (
+                    <div className="space-y-2">
+                      {selectedMentor.timeSlots.map((slot) => (
+                        <button
+                          key={slot.id}
+                          onClick={() =>
+                            slot.available && setSelectedTime(slot.time)
+                          }
+                          className={`w-full text-left px-4 py-2 rounded-xl text-sm transition-all ${
+                            slot.available
+                              ? selectedTime === slot.time
+                                ? "bg-blue-600 text-white"
+                                : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+                              : "bg-gray-100 text-gray-400 cursor-not-allowed"
+                          }`}
+                          disabled={!slot.available}
+                        >
+                          {slot.time} {slot.available ? "" : "(Band)"}
+                        </button>
+                      ))}
+                    </div>
+                  ) : (
+                    <p className="text-gray-600">Mavjud vaqtlar yo‘q</p>
+                  )}
+                </div>
               </div>
 
               <button
-                onClick={() => {
-                  toast.success(
-                    `${selectedMentor.name} bilan uchrashuv belgilandi!`
-                  );
-                  setIsBookingOpen(false);
-                }}
-                className="w-full px-4 py-2 bg-blue-600 text-white rounded-xl hover:bg-blue-700 transition"
+                onClick={handleConfirmBooking}
+                className="w-full px-4 py-2 bg-blue-600 text-white rounded-xl hover:bg-blue-700 transition disabled:bg-gray-400 disabled:cursor-not-allowed"
+                disabled={!selectedTime}
               >
                 Uchrashuvni tasdiqlash
               </button>
