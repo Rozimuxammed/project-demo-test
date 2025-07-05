@@ -484,7 +484,7 @@ const LandingPage = () => {
             <Crown className="w-12 h-12 ml-3 animate-pulse" />
           </div>
           <h2 className="text-3xl sm:text-4xl font-bold mb-4">
-            Maxsus Tanlov: Dasturlash Viktorinasi!
+            Maxsus tanlov viktorinasi!
           </h2>
           <p className="text-xl mb-4 opacity-90">
             10 ta savolga to'g'ri javob bering va eng kuchli dasturchi bilan{" "}
