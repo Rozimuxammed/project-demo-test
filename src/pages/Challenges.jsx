@@ -306,7 +306,7 @@ const Challenges = () => {
     <Layout>
       <div className="space-y-6 my-16 px-3 md:px-6 py-4 max-w-6xl mx-auto">
         {/* Header */}
-        <div className="bg-gradient-to-r from-orange-500 to-red-600 rounded-2xl p-4 md:p-6 text-white">
+        <div className="bg-gradient-to-r from-blue-500 to-purple-600 rounded-2xl p-4 md:p-6 text-white">
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
             <div>
               <h1 className="text-xl md:text-2xl font-bold mb-1">
@@ -351,7 +351,7 @@ const Challenges = () => {
                   onClick={() => setSelectedCategory(category.id)}
                   className={`px-3 py-1.5 rounded-full whitespace-nowrap transition-colors text-xs md:text-sm ${
                     selectedCategory === category.id
-                      ? "bg-gradient-to-r from-orange-500 to-red-600 text-white"
+                      ? "bg-gradient-to-r from-blue-500 to-purple-600 text-white"
                       : "bg-gray-100 text-gray-700 hover:bg-gray-200"
                   }`}
                 >
@@ -443,8 +443,8 @@ const Challenges = () => {
                         challenge.status === "completed"
                           ? "bg-green-100 text-green-800 cursor-not-allowed"
                           : challenge.status === "in-progress"
-                          ? "bg-gradient-to-r from-blue-500 to-purple-600 text-white hover:from-blue-600 hover:to-purple-700 transform hover:scale-105"
-                          : "bg-gradient-to-r from-orange-500 to-red-600 text-white hover:from-orange-600 hover:to-red-700 transform hover:scale-105"
+                          ? "bg-gradient-to-r from-blue-500 to-purple-600 text-white transform hover:scale-105"
+                          : "bg-gradient-to-r from-blue-500 to-purple-600 text-white transform hover:scale-105"
                       }`}
                       disabled={challenge.status === "completed"}
                       onClick={() =>
@@ -590,9 +590,9 @@ const Challenges = () => {
                 <div className="flex justify-center">
                   <img
                     src={
-                      challengeImagePreview || "https://via.placeholder.com/64"
+                      challengeImagePreview || "https://picsum.photos/200/300"
                     }
-                    alt="Sinov rasmi"
+                    alt=""
                     className="w-16 h-16 rounded border-2 border-gray-200 object-cover"
                   />
                 </div>
