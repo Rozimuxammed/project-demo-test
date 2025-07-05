@@ -60,7 +60,7 @@ const RegisterModal = ({ onClose }) => {
             <User className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5" />
             <input
               type="text"
-              placeholder="Full name"
+              placeholder="To‘liq ism"
               value={formData.name}
               onChange={(e) => handleInputChange("name", e.target.value)}
               className="w-full pl-10 pr-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:outline-none text-sm"
@@ -73,7 +73,7 @@ const RegisterModal = ({ onClose }) => {
             <Mail className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5" />
             <input
               type="email"
-              placeholder="Email address"
+              placeholder="Elektron pochta manzili"
               value={formData.email}
               onChange={(e) => handleInputChange("email", e.target.value)}
               className="w-full pl-10 pr-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:outline-none text-sm"
@@ -86,7 +86,7 @@ const RegisterModal = ({ onClose }) => {
             <Lock className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5" />
             <input
               type={showPassword ? "text" : "password"}
-              placeholder="Password"
+              placeholder="Parol"
               value={formData.password}
               onChange={(e) => handleInputChange("password", e.target.value)}
               className="w-full pl-10 pr-10 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:outline-none text-sm"
@@ -110,7 +110,7 @@ const RegisterModal = ({ onClose }) => {
             <MapPin className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5" />
             <input
               type="text"
-              placeholder="Location (e.g., Tashkent, UZ)"
+              placeholder="Manzil (masalan, Toshkent, UZ)"
               value={formData.location}
               onChange={(e) => handleInputChange("location", e.target.value)}
               className="w-full pl-10 pr-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:outline-none text-sm"

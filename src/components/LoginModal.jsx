@@ -51,7 +51,7 @@ const LoginModal = ({ onClose }) => {
             <Mail className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5" />
             <input
               type="email"
-              placeholder="Email address"
+              placeholder="Elektron pochta manzili"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               className="w-full pl-10 pr-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:outline-none text-sm"
@@ -64,7 +64,7 @@ const LoginModal = ({ onClose }) => {
             <Lock className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5" />
             <input
               type={showPassword ? "text" : "password"}
-              placeholder="Password"
+              placeholder="Parol"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               className="w-full pl-10 pr-10 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:outline-none text-sm"
