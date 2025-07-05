@@ -352,7 +352,7 @@ const RandomChat = () => {
               Aloqa Turini Tanlang
             </h2>
 
-            <div className="grid md:grid-cols-2 gap-4 mb-6">
+            <div className="grid md:grid-cols-1 gap-4 mb-6">
               <button
                 onClick={() => setChatType("video")}
                 className={`p-4 rounded-xl border-2 ${
@@ -365,7 +365,7 @@ const RandomChat = () => {
                 <div className="font-medium">Video Suhbat</div>
               </button>
 
-              <button
+              {/* <button
                 onClick={() => setChatType("voice")}
                 className={`p-4 rounded-xl border-2 ${
                   chatType === "voice"
@@ -375,7 +375,7 @@ const RandomChat = () => {
               >
                 <Mic className="w-8 h-8 mx-auto mb-2" />
                 <div className="font-medium">Ovozli Suhbat</div>
-              </button>
+              </button> */}
             </div>
 
             <div className="grid md:grid-cols-2 gap-4 mb-6">
