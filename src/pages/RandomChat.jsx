@@ -430,11 +430,11 @@ const RandomChat = () => {
         )}
 
         {isWebcamOn && (
-          <div className="space-y-6">
-            <div className="bg-black rounded-2xl overflow-hidden shadow-xl">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 p-4">
-                <div>
-                  <h3 className="text-lg font-semibold text-white mb-2">
+          <div className="space-y-6 w-[900px] mx-auto">
+            <div className="rounded-2xl w-full overflow-hidden shadow-xl">
+              <div className="grid grid-cols-1 w-full sm:grid-cols-2 gap-4 p-4">
+                <div className="w-full">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2">
                     Mahalliy Oqim
                   </h3>
                   <video
@@ -445,8 +445,8 @@ const RandomChat = () => {
                     className="w-full h-48 sm:h-64 bg-gray-200 rounded-lg"
                   />
                 </div>
-                <div>
-                  <h3 className="text-lg font-semibold text-white mb-2">
+                <div className="w-full">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2">
                     Masofaviy Oqim
                   </h3>
                   <video
@@ -458,7 +458,7 @@ const RandomChat = () => {
                 </div>
               </div>
 
-              <div className="bg-gray-900 p-4 flex flex-wrap justify-center gap-4">
+              <div className="p-4 flex flex-wrap justify-center gap-4">
                 <div className="flex items-center gap-2">
                   <input
                     ref={callInputRef}
