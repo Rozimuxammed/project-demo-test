@@ -1,5 +1,13 @@
 import { useState } from "react";
-import { Search, Bell, MessageCircle, Users, Menu, X } from "lucide-react";
+import {
+  Search,
+  Bell,
+  MessageCircle,
+  Users,
+  Menu,
+  X,
+  LogOut,
+} from "lucide-react";
 import { useAuth } from "../contexts/AuthContext";
 import logo from "../assets/logo.png"; // Adjust the path as necessary
 const Header = () => {
@@ -16,7 +24,7 @@ const Header = () => {
               <Users className="w-5 h-5 text-white" />
             </div> */}
             <img className="w-16 h-16" src={logo} alt="logo image" />
-            <span className="text-lg sm:text-xl font-bold bg-gradient-to-r from-re to-red-950 bg-clip-text text-transparent">
+            <span className="text-lg sm:text-xl font-bold bg-gradient-to-r from-red-600 to-red-950 bg-clip-text text-transparent">
               JIGARCHILIK
             </span>
           </div>
@@ -60,7 +68,7 @@ const Header = () => {
               onClick={logout}
               className="hidden sm:inline-block ml-2 px-3 py-1 text-sm text-gray-600 hover:text-red-600"
             >
-              Logout
+              <LogOut className="cursor-pointer" />
             </button>
           </div>
 
