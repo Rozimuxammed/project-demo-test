@@ -433,14 +433,20 @@ const LandingPage = () => {
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-purple-50 to-orange-50">
       {/* Navigatsiya */}
       <nav className="fixed top-0 left-0 w-full z-50 bg-white/80 backdrop-blur-md shadow-sm px-4 sm:px-6 flex justify-between items-center flex-wrap gap-y-2">
-        <div className="flex items-center space-x-2">
-          <img className="w-20 h-20" src={logo} alt="logo image" />
-          <span className="text-lg sm:text-2xl font-bold bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent">
+        {/* LOGO VA MATN */}
+        <div className="flex flex-col sm:flex-row items-center space-y-1 sm:space-y-0 sm:space-x-2">
+          <img
+            className="w-16 h-16 sm:w-20 sm:h-20"
+            src={logo}
+            alt="logo image"
+          />
+          <span className="text-center sm:text-left text-lg sm:text-2xl font-bold bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent">
             JIGARCHILIK
           </span>
         </div>
 
-        <div className="flex space-x-2 sm:space-x-4 mt-2 sm:mt-0">
+        {/* BUTTONLAR */}
+        <div className="flex space-x-2 sm:space-x-4">
           <button
             onClick={() => setShowLogin(true)}
             className="px-3 sm:px-6 py-1.5 sm:py-2 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-full transition-all duration-300 transform shadow-md text-sm sm:text-base hover:from-blue-600 hover:to-purple-700 hover:scale-105"
@@ -457,7 +463,7 @@ const LandingPage = () => {
       </nav>
 
       {/* Qahramon bo'lim */}
-      <section className="max-w-7xl mx-auto mt-7 px-4 sm:px-6 py-16 sm:py-24 text-center">
+      <section className="max-w-7xl mx-auto pt-36 lg:mt-7 px-4 sm:px-6 py-16 sm:py-24 text-center">
         <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-orange-500 bg-clip-text text-transparent mb-6 leading-tight">
           Tarmoq yarating, O'rganing, Yuksaling
         </h1>
