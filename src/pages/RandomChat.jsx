@@ -378,7 +378,7 @@ const RandomChat = () => {
               </button> */}
             </div>
 
-            <div className="grid md:grid-cols-2 gap-4 mb-6">
+            {/* <div className="grid md:grid-cols-2 gap-4 mb-6">
               <button
                 onClick={() => setConnectionType("local")}
                 className={`p-4 rounded-xl border-2 ${
@@ -402,7 +402,7 @@ const RandomChat = () => {
                 <Globe className="w-8 h-8 mx-auto mb-2" />
                 <div className="font-medium">Global Tarmoq</div>
               </button>
-            </div>
+            </div> */}
 
             <button
               onClick={startWebcam}
