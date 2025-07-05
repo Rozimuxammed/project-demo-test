@@ -212,7 +212,7 @@ const LandingPage = () => {
   const features = [
     {
       icon: <Coffee className="w-8 h-8" />,
-      title: "Qahva Sohbatlari",
+      title: "Qahva Suhbatlari",
       description:
         "Atigi bir piyola qahva narxiga tajribali mutaxassislardan maslahat oling. Sizga yo'l ko'rsatadigan mentorlar bilan bog'laning.",
     },
