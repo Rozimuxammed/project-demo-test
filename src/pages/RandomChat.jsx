@@ -430,7 +430,7 @@ const RandomChat = () => {
         )}
 
         {isWebcamOn && (
-          <div className="space-y-6 w-[900px] mx-auto">
+          <div className="space-y-6 sm:w-[90%] lg:w-[900px] mx-auto">
             <div className="rounded-2xl w-full overflow-hidden shadow-xl">
               <div className="grid grid-cols-1 w-full sm:grid-cols-2 gap-4 p-4">
                 <div className="w-full">
