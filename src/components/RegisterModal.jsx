@@ -46,10 +46,10 @@ const RegisterModal = ({ onClose }) => {
         {/* Title */}
         <div className="text-center mb-6">
           <h2 className="text-2xl font-semibold text-gray-800">
-            Join YouthConnect
+            Jigarchilikka qo‘shiling
           </h2>
           <p className="text-sm text-gray-500 mt-1">
-            Start building your professional network
+            Kasbiy tarmog‘ingizni qurishni boshlang
           </p>
         </div>
 
@@ -124,21 +124,21 @@ const RegisterModal = ({ onClose }) => {
             disabled={isLoading}
             className="w-full py-3 rounded-xl text-white font-medium text-sm bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 transition-all duration-200 transform hover:scale-105 shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            {isLoading ? "Creating account..." : "Create Account"}
+            {isLoading ? "Tizimga kiritilmoqda..." : "Ro‘yxatdan o‘tish"}
           </button>
         </form>
 
         {/* Terms */}
         <div className="mt-4 text-center text-xs text-gray-500">
-          By signing up, you agree to our{" "}
+          Ro‘yxatdan o‘tish orqali siz bizning{" "}
           <a href="#" className="text-blue-600 hover:underline">
-            Terms of Service
+            Foydalanish shartlari
           </a>{" "}
-          and{" "}
+          va{" "}
           <a href="#" className="text-blue-600 hover:underline">
-            Privacy Policy
+            Maxfiylik siyosati
           </a>
-          .
+          ga rozilik bildirasiz.
         </div>
       </div>
     </div>

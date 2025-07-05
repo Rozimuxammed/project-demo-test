@@ -36,9 +36,11 @@ const LoginModal = ({ onClose }) => {
 
         {/* Title */}
         <div className="text-center mb-6">
-          <h2 className="text-2xl font-semibold text-gray-800">Welcome Back</h2>
+          <h2 className="text-2xl font-semibold text-gray-800">
+            Yana xush kelibsiz
+          </h2>
           <p className="text-sm text-gray-500 mt-1">
-            Sign in to continue your journey
+            Safaringizni davom ettirish uchun tizimga kiring
           </p>
         </div>
 
@@ -87,14 +89,14 @@ const LoginModal = ({ onClose }) => {
             disabled={isLoading}
             className="w-full py-3 rounded-xl text-white font-medium text-sm bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            {isLoading ? "Signing in..." : "Sign In"}
+            {isLoading ? "Tizimga kirilmoqda..." : "Tizimga kirish"}
           </button>
         </form>
 
         {/* Forgot password */}
         <div className="mt-4 text-center">
           <a href="#" className="text-sm text-blue-600 hover:underline">
-            Forgot your password?
+            Parolingizni unutdingizmi?
           </a>
         </div>
       </div>
